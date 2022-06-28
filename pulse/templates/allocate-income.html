@@ -1,0 +1,152 @@
+{% extends 'ext/base.html' %}
+{% block content %}
+    <div class="text-center">
+        <h1>Your Monthly Income</h1>
+        <h1>$<span id="income">{{ income }}</span></h1>
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="col-10 bg-light">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.savings.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.savings.errors %}
+                                {{ form.savings(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.savings.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.savings(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.invest.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.invest.errors %}
+                                {{ form.invest(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.invest.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.invest(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.shopping.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.shopping.errors %}
+                                {{ form.shopping(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.shopping.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.shopping(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.food_and_health.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.food_and_health.errors %}
+                                {{ form.food_and_health(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.food_and_health.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.food_and_health(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.lifestyle.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.lifestyle.errors %}
+                                {{ form.lifestyle(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.lifestyle.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.lifestyle(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.bills.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.bills.errors %}
+                                {{ form.bills(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.bills.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                            <div class="d-flex">
+                                {{ form.bills(class="form-control", value=0) }}
+                                <span>%</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group d-flex justify-content-between">
+                        <p>{{ form.others.label(class="form-control-label") }}: $<span>0</span></p>
+                        <div class="col-3">
+                            {% if form.others.errors %}
+                                {{ form.others(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.others.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="d-flex">
+                                    {{ form.others(class="form-control", value=0) }}
+                                    <span>%</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Total: <span id="total">0</span>%</p>
+                    
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='pc-to-am.js') }}"></script>
+{% endblock content %}

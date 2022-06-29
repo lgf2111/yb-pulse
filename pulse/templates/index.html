@@ -1,4 +1,10 @@
 {% extends 'ext/base.html' %}
 {% block content %}
-    <a href="{{ url_for('enter_income') }}">Enter Income</a>
+    <div class="d-flex flex-column">
+        <a href="{{ url_for('enter_income') }}">enter_income</a>
+        <a href="{{ url_for('allocate_income') }}">allocate_income</a>
+        <a href="{{ url_for('analysis_report') }}">analysis_report</a>
+        <a href="{{ url_for('home') }}">home</a>
+        <a href="{{ url_for('add_expense') }}">add_expense</a>
+    </div>
 {% endblock content %}

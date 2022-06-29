@@ -1,0 +1,75 @@
+{% extends 'ext/base.html' %}
+{% block content %}
+    <h1>Add Expense</h1>
+    <div class="container-fluid d-flex justify-content-center">
+            <div class="col-10 bg-light">
+                <form method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.card.label(class="form-control-label") }}
+                        {% if form.card.errors %}
+                            {{ form.card(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.card.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.card(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>                    
+                    <div class="form-group">
+                        {{ form.category.label(class="form-control-label") }}
+                        {% if form.category.errors %}
+                            {{ form.category(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.category.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.category(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>                    
+                    <div class="form-group">
+                        {{ form.amount.label(class="form-control-label") }}
+                        {% if form.amount.errors %}
+                            {{ form.amount(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.amount.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.amount(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>                    
+                    <div class="form-group">
+                        {{ form.date.label(class="form-control-label") }}
+                        {% if form.date.errors %}
+                            {{ form.date(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.date.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.date(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>            
+                    <div class="form-group">
+                        {{ form.invoice.label() }}
+                        <br>
+                        {{ form.invoice(class="form-control-file") }}
+                        {% if form.invoice.errors %}
+                            {% for error in form.invoice.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>        
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-primary mt-2") }}
+                    </div>
+            </div>
+        </div>
+{% endblock content %}

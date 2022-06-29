@@ -1,7 +1,8 @@
-from sre_parse import CATEGORIES
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, DecimalField, IntegerField
+from wtforms import SubmitField, DecimalField, IntegerField, SelectField, DateField
 from wtforms.validators import DataRequired
+from flask_wtf.file import FileField, FileAllowed
+from pulse import DB
 
 
 class EnterIncomeForm(FlaskForm):
@@ -18,3 +19,11 @@ class AllocateIncomeForm(FlaskForm):
     others = IntegerField('Others', validators=[DataRequired()])
     submit = SubmitField('Next')
     
+class AddExpenseForm(FlaskForm):
+    db = DB.read()
+    card = SelectField('CARD', choices=[db['card']['number']])
+    category = SelectField('CATEGORY', choices=db['allocation'].keys())
+    amount = DecimalField('AMOUNT')
+    date = DateField('DATE')
+    invoice = FileField('INVOICE', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Next')

@@ -1,17 +1,21 @@
 {% extends 'ext/base.html' %}
 {% block content %}
     <h1>Budget Analysis Report</h1>
-    {% for cat in report %}
-        <div class="col-10">
-            <h2>{{ cat }}</h2>
-            <p>
-                Percentage: {{ report[cat]['percentage'] }}%
-                <br>
-                Stat: {{ report[cat]['stats'] }}
-                <br>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae expedita repellat eligendi laborum mollitia dignissimos. Quia quos porro fugiat, dolorem error illum amet magni? Optio impedit commodi ipsa cumque ab possimus aliquam harum reprehenderit tempora doloremque, qui, accusamus, molestias enim illum quidem in fugiat ratione corrupti distinctio consequuntur ea?
-            </p>
-        </div>
-    {% endfor %}
+    {% if report %}
+        {% for cat in report %}
+            <div class="col-10">
+                <h2>{{ cat }}</h2>
+                <p>
+                    Percentage: {{ report[cat]['percentage'] }}%
+                    <br>
+                    Stat: {{ report[cat]['stats'] }}
+                    <br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae expedita repellat eligendi laborum mollitia dignissimos. Quia quos porro fugiat, dolorem error illum amet magni? Optio impedit commodi ipsa cumque ab possimus aliquam harum reprehenderit tempora doloremque, qui, accusamus, molestias enim illum quidem in fugiat ratione corrupti distinctio consequuntur ea?
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Nothing to be shown.</h2>
+    {% endif %}
     <a href="{{ url_for('home') }}"" class="btn btn-primary">Next</a>
 {% endblock content %}

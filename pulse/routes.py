@@ -2,7 +2,7 @@ from fileinput import filename
 from flask import render_template, url_for, flash, redirect
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
-from pulse.utils import generate_analysis_report, save_picture
+from pulse.utils import generate_analysis_report, save_picture, create_card
 
 @app.route("/")
 def index():
@@ -23,7 +23,7 @@ def enter_income():
 @app.route("/allocate-income", methods=['GET','POST'])
 def allocate_income():
     db = DB.read()
-    income = db['income']
+    income = db['income'] if db.get('income') else 0
     form = AllocateIncomeForm()
     if form.validate_on_submit():
         savings = form.savings.data
@@ -55,17 +55,17 @@ def allocate_income():
 @app.route("/analysis-report")
 def analysis_report():
     db = DB.read()
-    allocation = db['allocation']
+    allocation = db.get('allocation')
     report = generate_analysis_report(allocation)
     return render_template('analysis-report.html', report=report)
 
 @app.route("/home")
 def home():
     db = DB.read()
-    card = db['card']
-    income = db['income']
-    allocation = db['allocation']
-    categories = [(k,income * v / 100) for k,v in allocation.items()]
+    card = db['card'] if db.get('card') else create_card()
+    income = db.get('income')
+    allocation = db.get('allocation')
+    categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
     categories.sort(key=lambda x: x[1], reverse=True)
     return render_template('home.html', card=card, categories=categories)
 
@@ -95,6 +95,6 @@ def add_expense():
 @app.route("/transactions-history")
 def transactions_history():
     db = DB.read()
-    expenses = db['expenses']
-    total = sum(map(lambda x: x['amount'], expenses))
+    expenses = db['expenses'] if db.get('expenses') else []
+    total = sum(map(lambda x: x['amount'], expenses)) if expenses else 0
     return render_template('transactions-history.html', expenses=expenses, total=total)

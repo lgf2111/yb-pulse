@@ -1,3 +1,4 @@
+from fileinput import filename
 from flask import render_template, url_for, flash, redirect
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
@@ -67,9 +68,33 @@ def home():
     categories = [(k,income * v / 100) for k,v in allocation.items()]
     categories.sort(key=lambda x: x[1], reverse=True)
     return render_template('home.html', card=card, categories=categories)
-@app.route("/add-expense")
+
+@app.route("/add-expense", methods=['GET','POST'])
 def add_expense():
     form = AddExpenseForm()
     if form.validate_on_submit():
-        pass
+        name = form.name.data
+        category = form.category.data
+        amount = float(form.amount.data)
+        date = form.date.data.strftime(r"%d/%m/%Y")
+        invoice = save_picture(form.invoice.data)
+        expense =  {'name': name,
+                    'category': category,
+                    'amount': amount,
+                    'date': date,
+                    'invoice': invoice}
+        db = DB.read()
+        if not db.get('expenses'):
+            db['expenses'] = []
+        db['expenses'].append(expense)
+        DB.write(db)
+        return(redirect(url_for('transactions_history')))
+
     return render_template('add-expense.html', form=form)
+
+@app.route("/transactions-history")
+def transactions_history():
+    db = DB.read()
+    expenses = db['expenses']
+    total = sum(map(lambda x: x['amount'], expenses))
+    return render_template('transactions-history.html', expenses=expenses, total=total)

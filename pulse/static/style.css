@@ -1,19 +1,22 @@
 #top-nav {
-    background: rgb(255,124,124);
-    background: linear-gradient(180deg, rgba(255,124,124,1) 0%, rgba(255,21,21,1) 100%);}
+    background: rgb(255, 124, 124);
+    background: linear-gradient(180deg, rgba(255, 124, 124, 1) 0%, rgba(255, 21, 21, 1) 100%);
+}
 
 #bot-nav-fill {
     height: 5vh;
 }
 
-.card_container{
+.card_container {
     font-family: 'Poppins', sans-serif;
-    margin:0; padding:0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    outline: none; border: none;
+    outline: none;
+    border: none;
     text-decoration: none;
     text-transform: uppercase;
-    
+
     /* min-height: 100vh;
     background: #eee; */
     display: flex;
@@ -23,53 +26,54 @@
     padding-bottom: 60px;
 }
 
-.card_container .card-container{
+.card_container .card-container {
     margin-bottom: -150px;
     position: relative;
     height: 250px;
     width: 400px;
 }
 
-.card_container .card-container .front{
+.card_container .card-container .front {
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 0; left: 0;
-    background:linear-gradient(45deg, blueviolet, deeppink);
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, blueviolet, deeppink);
     border-radius: 5px;
     backface-visibility: hidden;
-    box-shadow: 0 15px 25px rgba(0,0,0,.2);
-    padding:20px;
-    transform:perspective(1000px) rotateY(0deg);
-    transition:transform .4s ease-out;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .2);
+    padding: 20px;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform .4s ease-out;
 }
 
-.card_container .card-container .front .image{
+.card_container .card-container .front .image {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
     padding-top: 10px;
 }
 
-.card_container .card-container .front .image img{
+.card_container .card-container .front .image img {
     height: 50px;
 }
 
-.card_container .card-container .front .card-number-box{
-    padding:30px 0;
+.card_container .card-container .front .card-number-box {
+    padding: 30px 0;
     font-size: 22px;
-    color:#fff;
+    color: #fff;
 }
 
-.card_container .card-container .front .flexbox{
+.card_container .card-container .front .flexbox {
     display: flex;
 }
 
-.card_container .card-container .front .flexbox .box:nth-child(1){
+.card_container .card-container .front .flexbox .box:nth-child(1) {
     margin-right: auto;
 }
 
-.card_container .card-container .front .flexbox .box{
+.card_container .card-container .front .flexbox .box {
     font-size: 15px;
-    color:#fff;
+    color: #fff;
 }

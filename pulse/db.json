@@ -1,27 +1,37 @@
 {
-    "income": 9999.0,
+    "income": 900.0,
     "allocation": {
-        "Savings": 10.0,
-        "Invest": 10.0,
-        "Shopping": 10.0,
-        "Food & Health": 10.0,
-        "Lifestype": 10.0,
-        "Bills": 10.0,
-        "Others": 40.0
+        "Savings": 2.0,
+        "Invest": 5.0,
+        "Shopping": 20.0,
+        "Food & Health": 1.0,
+        "Lifestype": 20.0,
+        "Bills": 20.0,
+        "Others": 32.0
     },
-    "expenses": [{
-        "name": "Money",
-        "category": "Savings",
-        "amount": 200.0,
-        "date": "30/06/2022",
-        "invoice": "7a08691c8b7c70db.jpeg"
-    }, {
-        "name": "Macdonalds",
-        "category": "Food & Health",
-        "amount": 50.0,
-        "date": "30/06/2022",
-        "invoice": "575f96584c9a2560.jpeg"
-    }],
+    "expenses": [
+        {
+            "name": "Money",
+            "category": "Savings",
+            "amount": 200.0,
+            "date": "30/06/2022",
+            "invoice": "7a08691c8b7c70db.jpeg"
+        },
+        {
+            "name": "Macdonalds",
+            "category": "Food & Health",
+            "amount": 50.0,
+            "date": "30/06/2022",
+            "invoice": "575f96584c9a2560.jpeg"
+        },
+        {
+            "name": "Money",
+            "category": "Savings",
+            "amount": 100.0,
+            "date": "01/07/2022",
+            "invoice": "6fdced6919d25852.jpeg"
+        }
+    ],
     "card": {
         "number": "4808611557420870",
         "name": "Joshny Ng",

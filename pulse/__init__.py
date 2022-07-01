@@ -19,7 +19,7 @@ class DB:
 
     def write(db):
         with open('pulse/db.json', 'w') as f:
-            json.dump(db, f)
+            json.dump(db, f, indent=4)
 
 
 

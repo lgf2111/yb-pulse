@@ -12,7 +12,7 @@ class DB:
         try:
             with open('pulse/db.json', 'r') as f:
                 return json.load(f)
-        except json.decoder.JSONDecodeError:
+        except (json.decoder.JSONDecodeError, FileNotFoundError):
             with open('pulse/db.json', 'w') as f:
                 json_data = {}
                 json.dump(json_data, f)

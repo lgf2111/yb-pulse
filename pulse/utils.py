@@ -19,10 +19,10 @@ def generate_analysis_report(data):
         return report
 
 def save_picture(form_picture, default=''):
-    root_path = os.path.join(app.root_path, 'static/src/invoice')
+    root_path = os.path.join(app.root_path, 'static/src/default')
     if not form_picture:
         if default == 'invoice':
-            f_ext = 'default.jpg'
+            f_ext = 'invoice.jpg'
             form_picture = os.path.join(root_path, f_ext)
     else:
         _, f_ext = os.path.splitext(form_picture.filename)

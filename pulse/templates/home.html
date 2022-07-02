@@ -35,13 +35,17 @@
         <fieldset class="my-5 border rounded">
             <legend class="h1 text-center" style="margin-top:-.97em;">January</legend>
             <div class="d-flex flex-column align-items-center">
-                {% for cat in categories %}
-                        <div class="col-9 d-flex justify-content-between">
-                            <p class="my-2">{{ cat[0] }}</p>
-                            <p class="my-2">${{ "%.2f" % cat[1] }}</p>
-                        </div>
-                        <hr style="width:80%;">
-                {% endfor %}
+                {% if categories %}
+                    {% for cat in categories %}
+                            <div class="col-9 d-flex justify-content-between">
+                                <p class="my-2">{{ cat[0] }}</p>
+                                <p class="my-2">${{ "%.2f" % cat[1] }}</p>
+                            </div>
+                            <hr style="width:80%;">
+                    {% endfor %}
+                {% else %}
+                    <h3>Nothing to be shown.</h3>
+                {% endif %}
             </div>
         </fieldset>
         <div class="d-flex justify-content-around">

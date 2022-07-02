@@ -1,19 +1,42 @@
 <nav class="navbar navbar-light bg-light" id="top-nav">
     <div class="container-fluid">
-        <i class="bi bi-person-circle"></i>
-        <a href="{{ url_for('index') }}" class="navbar-brand">pulsè</a>
-        <i class="bi bi-share-fill"></i>
-        <i class="bi bi-gift-fill"></i>
-        <i class="bi bi-bell-fill"></i>
+        <i class="bi bi-person-circle text-light mx-1" style="font-size:2em;"></i>
+
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+            <img src="{{ url_for('static', filename='src/logo/pulse.png') }}" alt="" height="60px">
+        </a>
+        <div class="d-flex">
+            <div class="border rounded-circle shadow-sm bg-light mx-2" style="height:50px;width:50px;padding:.75em .95em;">
+                <i class="bi bi-share-fill"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm bg-light mx-2" style="height:50px;width:50px;padding:.75em .95em;">
+                <i class="bi bi-gift-fill"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm bg-light mx-2" style="height:50px;width:50px;padding:.75em .95em;">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+        </div>
     </div>
 </nav>
 
 <nav class="navbar fixed-bottom navbar-light bg-light">
-    <div class="container-fluid">
-        <i class="bi bi-house-door-fill"></i>
-        <i class="bi bi-apple"></i>
-        <i class="fa-solid fa-dumbbell"></i>
-        <i class="bi bi-currency-dollar"></i>
-        <i class="bi bi-credit-card"></i>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="col-10 d-flex justify-content-around">
+            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+                <i class="bi bi-house-door-fill"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+            <i class="bi bi-apple"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+            <i class="fa-solid fa-dumbbell"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+            <i class="bi bi-currency-dollar"></i>
+            </div>
+            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+            <i class="bi bi-credit-card"></i>
+            </div>
+        </div>
     </div>
 </nav>

@@ -36,21 +36,18 @@
             <legend class="h1 text-center" style="margin-top:-.97em;">January</legend>
             <div class="d-flex flex-column align-items-center">
                 {% for cat in categories %}
-                    {% if categories.index(cat) <= 2 %}
-                        <div class="col-10 d-flex justify-content-between">
-                    {% else %}
-                        <div class="col-10 d-flex justify-content-between view-more-target">
-                    {% endif %}
-                            <p>{{ cat[0] }}</p>
-                            <p>${{ cat[1] }}</p>
+                        <div class="col-9 d-flex justify-content-between">
+                            <p class="my-2">{{ cat[0] }}</p>
+                            <p class="my-2">${{ "%.2f" % cat[1] }}</p>
                         </div>
+                        <hr style="width:80%;">
                 {% endfor %}
-                <script src="{{ url_for('static', filename='scripts/view-more.js') }}"></script>
-                <a href="" class="small" function="view-more()">View More</a>
             </div>
         </fieldset>
-        <a href="{{ url_for('add_expense') }}" class="btn btn-primary">Add</a>
-        <a href="" class="btn btn-primary">Services</a>
+        <div class="d-flex justify-content-around">
+            <a href="{{ url_for('add_expense') }}" class="btn btn-primary px-4">Add</a>
+            <a href="" class="btn btn-primary px-4">Services</a>
+        </div>
 
     </div>
 </div>

@@ -7,7 +7,7 @@
                     Total Expense ^
                 </h5>
                 <h3 class="card-text">
-                    $ {{ total }}
+                    $ {{  "%.2f" % total }}
                 </h3>
             </div>
         </div>
@@ -30,7 +30,7 @@
                         <p class="text-secondary" style="margin-top:-.8em;">{{ expense['date'] }}</p>
                     </div>
                 </div>
-                <p class="text-danger h3 mt-4">-$ {{ expense['amount'] }}</p>
+                <p class="text-danger h3 mt-4">-$ {{ "%.2f" % expense['amount'] }}</p>
             </div>
         {% endfor %}
     </div>

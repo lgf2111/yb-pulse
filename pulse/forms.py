@@ -3,6 +3,7 @@ from wtforms import SubmitField, DecimalField, IntegerField, SelectField, DateFi
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileAllowed
 from pulse import DB
+from datetime import datetime
 
 
 class EnterIncomeForm(FlaskForm):
@@ -10,20 +11,20 @@ class EnterIncomeForm(FlaskForm):
     submit = SubmitField('Submit')
     
 class AllocateIncomeForm(FlaskForm):
-    savings = IntegerField('Savings', validators=[DataRequired()])
-    invest = IntegerField('Invest', validators=[DataRequired()])
-    shopping = IntegerField('Shopping', validators=[DataRequired()])
-    food_and_health = IntegerField('Food & Health', validators=[DataRequired()])
-    lifestyle = IntegerField('Lifestyle', validators=[DataRequired()])
-    bills = IntegerField('Bills', validators=[DataRequired()])
-    others = IntegerField('Others', validators=[DataRequired()])
+    savings = IntegerField('Savings', default=0)
+    invest = IntegerField('Invest', default=0)
+    shopping = IntegerField('Shopping', default=0)
+    food_and_health = IntegerField('Food & Health', default=0)
+    lifestyle = IntegerField('Lifestyle', default=0)
+    bills = IntegerField('Bills', default=0)
+    others = IntegerField('Others', default=0)
     submit = SubmitField('Next')
     
 class AddExpenseForm(FlaskForm):
     db = DB.read()
-    name = StringField('NAME')
+    name = StringField('NAME', validators=[DataRequired()])
     category = SelectField('CATEGORY', choices=db['allocation'].keys() if db.get('allocation') else [])
-    amount = DecimalField('AMOUNT')
-    date = DateField('DATE')
+    amount = DecimalField('AMOUNT', validators=[DataRequired()])
+    date = DateField('DATE', validators=[DataRequired()], default=datetime.today)
     invoice = FileField('INVOICE', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Next')

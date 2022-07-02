@@ -13,11 +13,13 @@ setInterval(function () {
             var percentage_ = parseFloat(percentage.value);
         }
         var amount_ = income * percentage_ / 100;
-        amount.innerText = amount_;
+        amount.innerText = amount_.toFixed(2);
         total_percentage += percentage_;
     }
     var total = document.getElementById('total');
     total.innerText = total_percentage;
     total.closest('p').classList.toggle('text-danger', total_percentage>100);
+    var submit = document.getElementById("submit")
+    submit.disabled = total_percentage==100 ? false : true;
 
 }, 100);

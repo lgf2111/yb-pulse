@@ -1,4 +1,5 @@
 from fileinput import filename
+from operator import inv
 from flask import render_template, url_for, flash, redirect
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
@@ -37,7 +38,7 @@ def allocate_income():
                         'Invest': invest,
                         'Shopping': shopping,
                         'Food & Health': food_and_health,
-                        'Lifestype': lifestyle,
+                        'Lifestyle': lifestyle,
                         'Bills': bills,
                         'Others': others,
                         }
@@ -66,7 +67,7 @@ def home():
     income = db.get('income')
     allocation = db.get('allocation')
     categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
-    categories.sort(key=lambda x: x[1], reverse=True)
+    # categories.sort(key=lambda x: x[1], reverse=True)
     return render_template('home.html', card=card, categories=categories)
 
 @app.route("/add-expense", methods=['GET','POST'])
@@ -77,7 +78,7 @@ def add_expense():
         category = form.category.data
         amount = float(form.amount.data)
         date = form.date.data.strftime(r"%d/%m/%Y")
-        invoice = save_picture(form.invoice.data)
+        invoice = save_picture(form.invoice.data, default='invoice')
         expense =  {'name': name,
                     'category': category,
                     'amount': amount,

@@ -18,11 +18,17 @@ def generate_analysis_report(data):
                 report[cat]['stats'] = 'high'
         return report
 
-def save_picture(form_picture):
+def save_picture(form_picture, default=''):
+    root_path = os.path.join(app.root_path, 'static/src/invoice')
+    if not form_picture:
+        if default == 'invoice':
+            f_ext = 'default.jpg'
+            form_picture = os.path.join(root_path, f_ext)
+    else:
+        _, f_ext = os.path.splitext(form_picture.filename)
     random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/src/invoice', picture_fn)
+    picture_path = os.path.join(root_path, picture_fn)
 
     output_size = (125, 125)
     i = Image.open(form_picture)

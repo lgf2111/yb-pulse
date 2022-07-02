@@ -1,9 +1,10 @@
 {% extends 'ext/base.html' %}
 {% block content %}
-    <h1>Budget Analysis Report</h1>
-    {% if report %}
+<div class="container-fluid d-flex align-items-center flex-column">
+        <h1 class="my-5">Budget Analysis Report</h1>
+        {% if report %}
         {% for cat in report %}
-            <div class="col-10">
+            <div class="col-10 my-1">
                 <h2>{{ cat }}</h2>
                 <p>
                     Percentage: {{ report[cat]['percentage'] }}%
@@ -17,5 +18,6 @@
     {% else %}
         <h2>Nothing to be shown.</h2>
     {% endif %}
-    <a href="{{ url_for('home') }}"" class="btn btn-primary">Next</a>
+    <a href="{{ url_for('home') }}"" class="btn btn-primary px-2">Next</a>
+    </div>
 {% endblock content %}

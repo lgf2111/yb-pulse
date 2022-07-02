@@ -1,3 +1,20 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+hr {
+    height: 3px !important;
+    background-color: rgb(177, 177, 177);;
+}
+
 #top-nav {
     background: rgb(255, 124, 124);
     background: linear-gradient(180deg, rgba(255, 124, 124, 1) 0%, rgba(255, 21, 21, 1) 100%);

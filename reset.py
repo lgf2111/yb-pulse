@@ -1,6 +1,6 @@
 import os
 import shutil
-from turtle import clear
+
 
 root_path = os.path.dirname(os.path.abspath(__file__))
 flask_path = os.path.join(root_path, 'pulse')

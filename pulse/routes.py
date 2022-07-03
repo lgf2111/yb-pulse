@@ -5,10 +5,10 @@ from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
 from pulse.utils import generate_analysis_report, save_picture, create_card
 
-@app.route("/")
-def index():
-    return render_template('index.html')
+# def index():
+#     return render_template('index.html')
 
+@app.route("/")
 @app.route("/enter-income", methods=['GET','POST'])
 def enter_income():
     form = EnterIncomeForm()

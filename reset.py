@@ -4,7 +4,7 @@ import shutil
 
 root_path = os.path.dirname(os.path.abspath(__file__))
 flask_path = os.path.join(root_path, 'pulse')
-clearing = ['static/src/invoice', 'db.json']
+clearing = [os.path.join('static','src','invoice'), 'db.json']
 manual = False
 for sub_path in clearing:
     path = os.path.join(flask_path, sub_path)

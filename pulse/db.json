@@ -4,5 +4,24 @@
         "name": "Joshny Ng",
         "month": 12,
         "year": 27
-    }
+    },
+    "income": 3000.0,
+    "allocation": {
+        "Savings": 100.0,
+        "Invest": 0.0,
+        "Shopping": 0.0,
+        "Food & Health": 0.0,
+        "Lifestyle": 0.0,
+        "Bills": 0.0,
+        "Others": 0.0
+    },
+    "expenses": [
+        {
+            "name": "Money",
+            "category": "Savings",
+            "amount": 1000.0,
+            "date": "03/07/2022",
+            "invoice": "1577262b9fc52471.jpg"
+        }
+    ]
 }

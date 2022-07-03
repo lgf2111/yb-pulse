@@ -38,8 +38,8 @@
                 {% if categories %}
                     {% for cat in categories %}
                             <div class="col-9 d-flex justify-content-between">
-                                <p class="my-2">{{ cat[0] }}</p>
-                                <p class="my-2">${{ "%.2f" % cat[1] }}</p>
+                                <p class="my-2">{{ cat }}</p>
+                                <p class="my-2">${{ "%.2f" % categories[cat] }}</p>
                             </div>
                             <hr style="width:80%;">
                     {% endfor %}

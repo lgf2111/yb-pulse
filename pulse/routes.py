@@ -13,7 +13,13 @@ def home():
         flash('Please start by entering your income.', 'info')
         return redirect(url_for('enter_income'))
     allocation = db.get('allocation')
-    categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
+    # categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
+    
+    categories = {k:0 for k,_ in allocation.items()}
+    expenses = db.get('expenses')
+    for expense in expenses:
+        categories[expense['category']] += expense['amount']
+    print(categories)
     # categories.sort(key=lambda x: x[1], reverse=True)
     return render_template('home.html', card=card, categories=categories)
 

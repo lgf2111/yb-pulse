@@ -7,15 +7,57 @@ import copy
 
 
 def generate_analysis_report(data):
+    remarks = {
+        'Savings': {
+            'low':'this needs to be improved',
+            'mid':'best if can be improved',
+            'high':'keep up the good work',
+            },
+        'Invest': {
+            'low':'this needs to be improved',
+            'mid':'best if can be improved',
+            'high':'keep up the good work',
+            },
+        'Shopping': {
+            'low':'keep up the good work',
+            'mid':'best if can be reduced',
+            'high':'this needs to be improved',
+            },
+        'Food & Health': {
+            'low':'keep up the good work',
+            'mid':'best if can be reduced',
+            'high':'this needs to be improved',
+            },
+        'Lifestyle': {
+            'low':'keep up the good work',
+            'mid':'best if can be reduced',
+            'high':'this needs to be improved',
+            },
+        'Bills': {
+            'low':'keep up the good work',
+            'mid':'best if can be reduced',
+            'high':'this needs to be improved',
+            },
+        'Others': {
+            'low':'keep up the good work',
+            'mid':'best if can be reduced',
+            'high':'this needs to be improved',
+            },
+    }
     if data:
         report = {k:{'percentage':data[k]} for k in data}
         for cat in data:
             if data[cat] <= 30:
-                report[cat]['stats'] = 'low'
+                stat = 'low'
+                remark = remarks[cat][stat]
             elif 30 < data[cat] <= 60:
-                report[cat]['stats'] = 'average'
+                stat = 'mid'
+                remark = remarks[cat][stat]
             if 60 < data[cat]:
-                report[cat]['stats'] = 'high'
+                stat = 'high'
+                remark = remarks[cat][stat]
+            report[cat]['stat'] = stat
+            report[cat]['remark'] = remark
         return report
 
 def save_picture(form_picture, default=''):

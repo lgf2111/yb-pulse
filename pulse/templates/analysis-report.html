@@ -9,9 +9,9 @@
                 <p>
                     Percentage: {{ report[cat]['percentage'] }}%
                     <br>
-                    Stat: {{ report[cat]['stats'] }}
+                    Stat: {{ report[cat]['stat'] }}
                     <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae expedita repellat eligendi laborum mollitia dignissimos. Quia quos porro fugiat, dolorem error illum amet magni? Optio impedit commodi ipsa cumque ab possimus aliquam harum reprehenderit tempora doloremque, qui, accusamus, molestias enim illum quidem in fugiat ratione corrupti distinctio consequuntur ea?
+                    Your amount on {{ cat }} is {{ report[cat]['stat'] }},{{ report[cat]['remark'] }}.
                 </p>
             </div>
         {% endfor %}

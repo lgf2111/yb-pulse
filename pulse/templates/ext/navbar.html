@@ -31,12 +31,12 @@
             <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
             <i class="fa-solid fa-dumbbell"></i>
             </div>
-            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
-            <i class="bi bi-currency-dollar"></i>
-            </div>
-            <div class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
-            <i class="bi bi-credit-card"></i>
-            </div>
+            <a href="{{ url_for('add_expense') }}" class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+                    <i class="bi bi-currency-dollar text-dark"></i>
+            </a>
+            <a href="{{ url_for('home') }}" class="border rounded-circle shadow-sm" style="height:50px;width:50px;padding:.75em .95em;">
+            <i class="bi bi-credit-card text-dark"></i>
+            </a>
         </div>
     </div>
 </nav>

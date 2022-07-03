@@ -17,9 +17,10 @@ def home():
     
     categories = {k:0 for k,_ in allocation.items()}
     expenses = db.get('expenses')
-    for expense in expenses:
-        categories[expense['category']] += expense['amount']
-    print(categories)
+    if expenses:
+        for expense in expenses:
+            categories[expense['category']] += expense['amount']
+
     # categories.sort(key=lambda x: x[1], reverse=True)
     return render_template('home.html', card=card, categories=categories)
 

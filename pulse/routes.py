@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect
+from datetime import datetime
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
 from pulse.utils import generate_analysis_report, save_picture, create_card
@@ -8,6 +9,7 @@ from pulse.utils import generate_analysis_report, save_picture, create_card
 def home():
     db = DB.read()
     card = db['card'] if db.get('card') else create_card()
+    date = datetime.now()
     income = db.get('income')
     if not income:
         flash('Please start by entering your income.', 'info')
@@ -19,10 +21,12 @@ def home():
     expenses = db.get('expenses')
     if expenses:
         for expense in expenses:
-            categories[expense['category']] += expense['amount']
+            exp_date = datetime.strptime(expense['date'], r"%d/%m/%Y")
+            if (exp_date.month, exp_date.year) == (date.month, date.year):
+                categories[expense['category']] += expense['amount']
 
     # categories.sort(key=lambda x: x[1], reverse=True)
-    return render_template('home.html', card=card, categories=categories)
+    return render_template('home.html', card=card, date=date, categories=categories)
 
 @app.route("/enter-income", methods=['GET','POST'])
 def enter_income():

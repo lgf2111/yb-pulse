@@ -22,6 +22,13 @@
             "amount": 1000.0,
             "date": "03/07/2022",
             "invoice": "1577262b9fc52471.jpg"
+        },
+        {
+            "name": "Mac",
+            "category": "Food & Health",
+            "amount": 100.0,
+            "date": "03/07/2022",
+            "invoice": "af1b0c286108c92c.jpg"
         }
     ]
 }

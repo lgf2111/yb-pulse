@@ -15,7 +15,29 @@
             <div class="rounded">
                 <div class="rounded-circle border overflow-hidden mt-2">
                     <img src="{{ url_for('static', filename='src/invoice/'+expense['invoice']) }}" alt=""
-                        style="height: 4em; width: 4em" />
+                        style="height: 4em; width: 4em"
+                        data-bs-toggle="modal" data-bs-target="#id-{{ expenses.index(expense) }}" />
+                </div>
+                <div class="modal fade" id="id-{{ expenses.index(expense) }}" tabindex="-1" aria-labelledby="id-{{ expenses.index(expense) }}Label" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="id-{{ expenses.index(expense) }}Label">
+                            {{ expense['name'] }}
+                            <small class="text-secondary ms-2" style="font-weight: normal">{{ expense['category'] }}</small>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <img src="{{ url_for('static', filename='src/invoice/'+expense['invoice']) }}" alt=""
+                            style="height:30em;margin-left:-.35em;">
+                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
             <div class="ms-4">

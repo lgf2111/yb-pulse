@@ -72,9 +72,9 @@ def save_picture(form_picture, default=''):
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(root_path, default, picture_fn)
 
-    output_size = (125, 125)
+    # output_size = (125, 125)
     i = Image.open(form_picture)
-    i.thumbnail(output_size)
+    # i.thumbnail(output_size)
     i.save(picture_path)
 
     return picture_fn

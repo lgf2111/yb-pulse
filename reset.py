@@ -5,6 +5,7 @@ import shutil
 root_path = os.path.dirname(os.path.abspath(__file__))
 flask_path = os.path.join(root_path, 'pulse')
 clearing = ['static/src/invoice', 'db.json']
+manual = False
 for sub_path in clearing:
     path = os.path.join(flask_path, sub_path)
     if os.path.isfile(path) or os.path.islink(path):
@@ -18,7 +19,7 @@ for sub_path in clearing:
     else:
         print(f"{path} not found.\nRestoring...")
         manual = True
-
+        
 if manual:
     paths = [os.path.join(flask_path, path) for path in clearing]
     os.system(  f'mkdir {paths[0]};'

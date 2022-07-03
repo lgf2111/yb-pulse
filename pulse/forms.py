@@ -22,8 +22,9 @@ class AllocateIncomeForm(FlaskForm):
     
 class AddExpenseForm(FlaskForm):
     db = DB.read()
+    manual = ["Savings","Invest","Shopping","Food & Health","Lifestyle","Bills","Others"]
     name = StringField('NAME', validators=[DataRequired()])
-    category = SelectField('CATEGORY', choices=db['allocation'].keys() if db.get('allocation') else [])
+    category = SelectField('CATEGORY', choices=db['allocation'].keys() if db.get('allocation') else manual)
     amount = DecimalField('AMOUNT', validators=[DataRequired()])
     date = DateField('DATE', validators=[DataRequired()], default=datetime.today)
     invoice = FileField('INVOICE', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])

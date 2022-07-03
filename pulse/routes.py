@@ -1,14 +1,22 @@
-from fileinput import filename
-from operator import inv
 from flask import render_template, url_for, flash, redirect
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
 from pulse.utils import generate_analysis_report, save_picture, create_card
 
-# def index():
-#     return render_template('index.html')
-
 @app.route("/")
+@app.route("/home")
+def home():
+    db = DB.read()
+    card = db['card'] if db.get('card') else create_card()
+    income = db.get('income')
+    if not income:
+        flash('Please start by entering your income.', 'info')
+        return redirect(url_for('enter_income'))
+    allocation = db.get('allocation')
+    categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
+    # categories.sort(key=lambda x: x[1], reverse=True)
+    return render_template('home.html', card=card, categories=categories)
+
 @app.route("/enter-income", methods=['GET','POST'])
 def enter_income():
     form = EnterIncomeForm()
@@ -17,7 +25,6 @@ def enter_income():
         db = DB.read()
         db['income'] = income
         DB.write(db)
-        flash('done','success')
         return redirect(url_for('allocate_income'))
     return render_template('enter-income.html', form=form)
 
@@ -49,7 +56,6 @@ def allocate_income():
         db = DB.read()
         db['allocation'] = allocation
         DB.write(db)
-        flash('done', 'success')
         return redirect(url_for('analysis_report'))
     return render_template('allocate-income.html', income=income, form=form)
 
@@ -59,16 +65,6 @@ def analysis_report():
     allocation = db.get('allocation')
     report = generate_analysis_report(allocation)
     return render_template('analysis-report.html', report=report)
-
-@app.route("/home")
-def home():
-    db = DB.read()
-    card = db['card'] if db.get('card') else create_card()
-    income = db.get('income')
-    allocation = db.get('allocation')
-    categories = [(k,income * v / 100) for k,v in allocation.items()] if allocation else []
-    # categories.sort(key=lambda x: x[1], reverse=True)
-    return render_template('home.html', card=card, categories=categories)
 
 @app.route("/add-expense", methods=['GET','POST'])
 def add_expense():

@@ -89,8 +89,7 @@ def add_expense():
         db = DB.read()
         if not db.get('expenses'):
             db['expenses'] = []
-        expense =  {'id': len(db.get('expenses')),
-                    'name': name,
+        expense =  {'name': name,
                     'category': category,
                     'amount': amount,
                     'date': date,
@@ -108,14 +107,11 @@ def transactions_history():
     total = sum(map(lambda x: x['amount'], expenses)) if expenses else 0
     return render_template('transactions-history.html', expenses=expenses, total=total)
 
-@app.route("/transactions-history/<int:transaction_id>/edit", methods=['get','post'])
-def edit_transaction(transaction_id):
+@app.route("/transactions-history/<int:idx>/edit", methods=['get','post'])
+def edit_transaction(idx):
     db = DB.read()
     expenses = db['expenses']
-    for expense in expenses:
-        if expense['id'] == transaction_id:
-            transaction = expense
-            break
+    transaction = expenses[idx]
     
     form = AddExpenseForm()
     if form.validate_on_submit():
@@ -125,32 +121,24 @@ def edit_transaction(transaction_id):
         date = form.date.data.strftime(r"%d/%m/%Y")
         invoice = save_picture(form.invoice.data, default='invoice')
         db = DB.read()
-        if not db.get('expenses'):
-            db['expenses'] = []
-        new_expense =  {'id': len(db.get('expenses')),
-                    'name': name,
-                    'category': category,
-                    'amount': amount,
-                    'date': date,
-                    'invoice': invoice}
-        for expense in db['expenses']:
-            if expense['id'] == new_expense['id']:
-                db['expenses'][expense] = new_expense
+        new_expense =  {'name': name,
+                        'category': category,
+                        'amount': amount,
+                        'date': date,
+                        'invoice': invoice}
+        expenses[idx] = new_expense
+        db['expenses'] = expenses
         DB.write(db)
         return(redirect(url_for('transactions_history')))
 
     return render_template('add-expense.html', form=form, transaction=transaction)
 
-@app.route("/transactions-history/<int:transaction_id>/delete", methods=['get','post'])
-def delete_transaction(transaction_id):
+@app.route("/transactions-history/<int:idx>/delete", methods=['get','post'])
+def delete_transaction(idx):
     db = DB.read()
     expenses = db['expenses']
-    for expense in expenses:
-        if expense['id'] == transaction_id:
-            transaction = expense
-    expenses.remove(transaction)
-    for i in range(len(expenses)):
-        expenses[i]['id'] = i
+    
+    del expenses[idx]
     db['expenses'] = expenses
     DB.write(db)
     return(redirect(url_for('transactions_history')))

@@ -17,12 +17,18 @@
     },
     "expenses": [
         {
-            "id": 0,
-            "name": "Mac",
-            "category": "Food & Health",
+            "name": "Macs",
+            "category": "Savings",
             "amount": 100.0,
-            "date": "03/07/2022",
-            "invoice": "af1b0c286108c92c.jpg"
+            "date": "20/07/2022",
+            "invoice": "c4ec01a42a3e7ad9.jpg"
+        },
+        {
+            "name": "Macdonalds",
+            "category": "Food & Health",
+            "amount": 99.0,
+            "date": "20/07/2022",
+            "invoice": "cc054df516f2e256.jpg"
         }
     ]
 }

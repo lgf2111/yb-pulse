@@ -17,11 +17,7 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {% if transaction %}
-                                {{ form.name(class="form-control form-control-lg", value=transaction['name']) }}
-                            {% else %}
                                 {{ form.name(class="form-control form-control-lg") }}
-                            {% endif %}
                         {% endif %}
                     </div>                    
                     <div class="form-group py-2">
@@ -34,11 +30,7 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {% if transaction %}
-                                {{ form.category(class="form-select form-control-lg", cat=transaction['category']) }}
-                            {% else %}
                                 {{ form.category(class="form-select form-control-lg") }}
-                            {% endif %}
                 {% endif %}
                     </div>                    
                     <div class="form-group">
@@ -53,11 +45,7 @@
                                     {% endfor %}
                                 </div>
                             {% else %}
-                                {% if transaction %}
-                                {{ form.amount(class="form-control form-control-lg", placeholder='0.00', value=transaction['amount']) }}
-                                {% else %}
                                 {{ form.amount(class="form-control form-control-lg", placeholder='0.00') }}
-                                {% endif %}
                             {% endif %}
                           </div>
                     </div>                    
@@ -71,21 +59,13 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {% if transaction %}
-                            {{ form.date(class="form-control form-control-lg", default=transaction['date']) }}
-                            {% else %}
                             {{ form.date(class="form-control form-control-lg") }}
-                            {% endif %}
                         {% endif %}
                     </div>            
                     <div class="form-group">
                         {{ form.invoice.label() }}
                         <br>
-                        {% if transaction %}
-                            {{ form.invoice(class="form-control-file", value=transaction['invoice']) }}
-                        {% else %}
                             {{ form.invoice(class="form-control-file") }}
-                        {% endif %}
                         {% if form.invoice.errors %}
                             {% for error in form.invoice.errors %}
                                 <span class="text-danger">{{ error }}</span></br>

@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from datetime import datetime
 from pulse import app, DB
 from pulse.forms import EnterIncomeForm, AllocateIncomeForm, AddExpenseForm
-from pulse.utils import generate_analysis_report, save_picture, create_card
+from pulse.utils import generate_analysis_report, save_picture, create_card, remove_picture
 
 @app.route("/")
 @app.route("/home")
@@ -114,6 +114,11 @@ def edit_transaction(idx):
     transaction = expenses[idx]
     
     form = AddExpenseForm()
+    form.name.data = transaction['name']
+    form.category.data = transaction['category']
+    form.amount.data = transaction['amount']
+    form.date.data = datetime.strptime(transaction['date'], r"%d/%m/%Y")
+    form.invoice.data = transaction['invoice']
     if form.validate_on_submit():
         name = form.name.data
         category = form.category.data
@@ -126,6 +131,7 @@ def edit_transaction(idx):
                         'amount': amount,
                         'date': date,
                         'invoice': invoice}
+        remove_picture(expenses[idx]['invoice'])
         expenses[idx] = new_expense
         db['expenses'] = expenses
         DB.write(db)
@@ -137,7 +143,7 @@ def edit_transaction(idx):
 def delete_transaction(idx):
     db = DB.read()
     expenses = db['expenses']
-    
+    remove_picture(expenses[idx]['invoice'], default='invoice')
     del expenses[idx]
     db['expenses'] = expenses
     DB.write(db)

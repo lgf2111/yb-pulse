@@ -17,18 +17,11 @@
     },
     "expenses": [
         {
-            "name": "Macs",
-            "category": "Savings",
-            "amount": 100.0,
-            "date": "20/07/2022",
-            "invoice": "c4ec01a42a3e7ad9.jpg"
-        },
-        {
-            "name": "Macdonalds",
+            "name": "Long John Silver's",
             "category": "Food & Health",
-            "amount": 99.0,
+            "amount": 50.0,
             "date": "20/07/2022",
-            "invoice": "cc054df516f2e256.jpg"
+            "invoice": "856b70f28538fb5a.jpg"
         }
     ]
 }

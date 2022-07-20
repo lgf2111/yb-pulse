@@ -79,6 +79,9 @@ def save_picture(form_picture, default=''):
 
     return picture_fn
 
+def remove_picture(filename, default=''):
+    root_path = os.path.join(app.root_path, 'static', 'src', default)
+    os.remove(os.path.join(root_path, filename))
 
 def create_card():
     visaPrefixList = [

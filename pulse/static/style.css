@@ -94,3 +94,12 @@ hr {
     font-size: 15px;
     color: #fff;
 }
+
+.transaction {
+    border-radius: 1em;
+}
+
+.transaction:hover {
+    outline: black solid 1px;
+    cursor: pointer;
+}

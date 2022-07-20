@@ -17,13 +17,7 @@
     },
     "expenses": [
         {
-            "name": "Money",
-            "category": "Savings",
-            "amount": 1000.0,
-            "date": "03/07/2022",
-            "invoice": "1577262b9fc52471.jpg"
-        },
-        {
+            "id": 0,
             "name": "Mac",
             "category": "Food & Health",
             "amount": 100.0,
